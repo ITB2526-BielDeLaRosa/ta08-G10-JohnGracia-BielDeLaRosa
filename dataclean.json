@@ -1,0 +1,22 @@
+{
+  "energy_consumption_kwh": [
+    { "month": "January", "value": 1200 },
+    { "month": "February", "value": 1100 },
+    { "month": "March", "value": 1000 }
+  ],
+  "water_consumption_m3": [
+    { "month": "January", "value": 300 },
+    { "month": "February", "value": 280 },
+    { "month": "March", "value": 320 }
+  ],
+  "electronic_waste_units": [
+    { "month": "January", "value": 15 },
+    { "month": "February", "value": 10 },
+    { "month": "March", "value": 20 }
+  ],
+  "office_consumables_units": [
+    { "month": "January", "value": 500 },
+    { "month": "February", "value": 450 },
+    { "month": "March", "value": 600 }
+  ]
+}
