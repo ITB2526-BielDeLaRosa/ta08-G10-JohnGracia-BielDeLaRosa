@@ -1,6 +1,6 @@
 // Dades de consum base mensual per defecte
 const consumBase = {
-    elec: 1200,   // kWh mitjans
+    elec: 2500,   // kWh mitjans
     aigua: 45,    // m3 mitjans
     oficina: 150, // unitats (folis, tòner...)
     neteja: 85    // litres de producte
