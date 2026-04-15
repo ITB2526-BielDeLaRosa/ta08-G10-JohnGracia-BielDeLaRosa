@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora Energètica - Fase 3.1a</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Projecte Sostenible: Calculadora de Previsions</h1>
+    <nav>
+        <button onclick="generarCalculs()">🔄 Actualitzar Previsions (Simulació)</button>
+    </nav>
+</header>
+
+<main>
+    <section class="grid-calculs">
+        <div class="card">
+            <span class="badge">Electricitat</span>
+            <h3>Previsió Pròxim Any</h3>
+            <p id="elec-any">0 kWh</p>
+        </div>
+        <div class="card">
+            <span class="badge">Electricitat</span>
+            <h3>Curs (Set-Jun)</h3>
+            <p id="elec-curs">0 kWh</p>
+        </div>
+
+        <div class="card blava">
+            <span class="badge">Aigua</span>
+            <h3>Previsió Pròxim Any</h3>
+            <p id="aigua-any">0 m³</p>
+        </div>
+        <div class="card blava">
+            <span class="badge">Aigua</span>
+            <h3>Curs (Set-Jun)</h3>
+            <p id="aigua-curs">0 m³</p>
+        </div>
+
+        <div class="card groga">
+            <span class="badge">Consumibles</span>
+            <h3>Oficina Pròxim Any</h3>
+            <p id="cons-any">0 ud.</p>
+        </div>
+        <div class="card groga">
+            <span class="badge">Consumibles</span>
+            <h3>Curs (Set-Jun)</h3>
+            <p id="cons-curs">0 ud.</p>
+        </div>
+
+        <div class="card verda">
+            <span class="badge">Neteja</span>
+            <h3>Productes Any</h3>
+            <p id="net-any">0 L</p>
+        </div>
+        <div class="card verda">
+            <span class="badge">Neteja</span>
+            <h3>Curs (Set-Jun)</h3>
+            <p id="net-curs">0 L</p>
+        </div>
+    </section>
+
+    <section class="estrategies">
+        <h2>🌱 Estratègies per a la Reducció del Consum</h2>
+        <div class="flex-estrategies">
+            <article>
+                <h4>⚡ Electricitat</h4>
+                <ul>
+                    <li>Instal·lar llums LED amb sensors de moviment.</li>
+                    <li>Aprofitar la llum natural i tancar equips en "stand-by".</li>
+                </ul>
+            </article>
+            <article>
+                <h4>💧 Aigua</h4>
+                <ul>
+                    <li>Col·locar airejadors a les aixetes per reduir el cabal.</li>
+                    <li>Revisar fuites i instal·lar cisternes de doble descàrrega.</li>
+                </ul>
+            </article>
+            <article>
+                <h4>📦 Consumibles i Neteja</h4>
+                <ul>
+                    <li>Digitalització de documents (Paper Zero).</li>
+                    <li>Ús de productes de neteja eco-certificats a granel.</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+</main>
+
+<script src="js/calculator.js"></script>
+</body>
+</html>
