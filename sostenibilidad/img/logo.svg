@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" fill="none">
+  <circle cx="30" cy="30" r="26" fill="#1a3d2b"/>
+  <path d="M30 12C30 12 16 24 16 34a14 14 0 0028 0C44 24 30 12 30 12z" fill="#52b788"/>
+  <path d="M30 44V32" stroke="#b7e4c7" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M22 28l8 6 8-6" stroke="#b7e4c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="65" y="24" font-family="Georgia,serif" font-size="19" font-weight="bold" fill="#1a3d2b">EcoEscola</text>
+  <text x="65" y="42" font-family="Georgia,serif" font-size="10" fill="#2d6a4f">Calculadora de Sostenibilitat · F3</text>
+</svg>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoEscola · Calculadora de Sostenibilitat — Fase 3</title>
+  <meta name="description" content="Calculadora de consum d'electricitat, aigua, consumibles, neteja, manteniment i escombraries per a centres educatius. Projeccions estacionals i pla de reducció del 30%.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+
+  <!-- 1. ESTILS (fitxer extern) -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- 2. jsPDF — ha d'estar carregat ABANS de pdf-generator.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ═══ NAVEGACIÓ ══════════════════════════════════════════ -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="img/logo.svg" alt="EcoEscola">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#calculadora" class="actiu">Calculadora</a></li>
+    <li><a href="#comparativa">Avant/Après</a></li>
+    <li><a href="#reduccions">Reduccions</a></li>
+    <li><a href="#pla">Pla 3 Anys</a></li>
+    <li><a href="#circular">Economia Circular</a></li>
+    <li><a href="pages/resultats.html">Resultats F3</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ════════════════════════════════════════════════ -->
+<section class="hero">
+  <span class="hero-eyebrow">🏫 Centre Educatiu · Fase 3</span>
+  <h1>Mesura el teu<br><em>impacte ambiental</em></h1>
+  <p class="hero-sub">
+    Calculadora de 6 indicadors de consum amb projeccions estacionals,
+    comparativa abans/després i pla de reducció del 30% en 3 anys.
+  </p>
+  <div class="hero-btns">
+    <a href="#calculadora" class="btn btn-primary">→ Obrir calculadora</a>
+    <a href="#pla" class="btn btn-outline">Veure pla 3 anys</a>
+    <a href="pages/resultats.html" class="btn btn-outline">Resultats F3</a>
+  </div>
+</section>
+
+<!-- ═══ KPI BANNER (omplert per JS) ════════════════════════ -->
+<div class="kpi-banner">
+  <div class="kpi-item"><span class="kpi-num" id="kpi-elec">—</span><span class="kpi-lbl">kWh electricitat/any</span></div>
+  <div class="kpi-item"><span class="kpi-num" id="kpi-aigua">—</span><span class="kpi-lbl">m³ aigua/any</span></div>
+  <div class="kpi-item"><span class="kpi-num" id="kpi-cons">—</span><span class="kpi-lbl">Consumibles/any</span></div>
+  <div class="kpi-item"><span class="kpi-num" id="kpi-net">—</span><span class="kpi-lbl">L neteja/any</span></div>
+  <div class="kpi-item"><span class="kpi-num" id="kpi-cost">—</span><span class="kpi-lbl">€ cost total/any</span></div>
+  <div class="kpi-item"><span class="kpi-num" id="kpi-co2">—</span><span class="kpi-lbl">kg CO₂ eq./any</span></div>
+</div>
+
+<!-- ═══ CALCULADORA ════════════════════════════════════════ -->
+<section class="section section--grey" id="calculadora">
+  <div class="container">
+    <span class="section-eyebrow">📊 Eina de càlcul</span>
+    <h2 class="section-title">Calculadora de Consum</h2>
+    <p class="section-desc">
+      12 càlculs (anual + període) per a 6 indicadors: electricitat, aigua,
+      consumibles, neteja, manteniment i escombraries. Factors estacionals mensuals reals.
+    </p>
+
+    <div class="calc-layout">
+      <!-- Panel de controls -->
+      <div class="calc-panel">
+        <h3>⚙️ Paràmetres</h3>
+
+        <div class="form-group">
+          <label>Nombre d'alumnes</label>
+          <input type="number" id="alumnes" value="350" min="50" max="3000" step="10">
+        </div>
+        <div class="form-group">
+          <label>Any de projecció</label>
+          <input type="number" id="any" value="2025" min="2024" max="2035">
+        </div>
+        <div class="form-group">
+          <label>Inici del període</label>
+          <select id="mes-inici">
+            <option value="0">Gener</option><option value="1">Febrer</option>
+            <option value="2">Març</option><option value="3">Abril</option>
+            <option value="4">Maig</option><option value="5">Juny</option>
+            <option value="6">Juliol</option><option value="7">Agost</option>
+            <option value="8" selected>Setembre</option><option value="9">Octubre</option>
+            <option value="10">Novembre</option><option value="11">Desembre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Final del període</label>
+          <select id="mes-fi">
+            <option value="0">Gener</option><option value="1">Febrer</option>
+            <option value="2">Març</option><option value="3">Abril</option>
+            <option value="4">Maig</option><option value="5" selected>Juny</option>
+            <option value="6">Juliol</option><option value="7">Agost</option>
+            <option value="8">Setembre</option><option value="9">Octubre</option>
+            <option value="10">Novembre</option><option value="11">Desembre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Millora aplicada</label>
+          <select id="millora">
+            <option value="0">Sense millores (0%)</option>
+            <option value="10">Any 1: −10%</option>
+            <option value="20">Any 2: −20%</option>
+            <option value="30">Any 3: −30%</option>
+          </select>
+        </div>
+
+        <button class="btn-calc" id="btn-calcular">🔄 Calcular</button>
+        <button class="btn-pdf" id="btn-pdf" onclick="generarPDF()">
+          📄 Descarregar informe PDF
+        </button>
+
+        <div class="note-box">
+          <strong>Nota metodològica:</strong> Valors calculats amb factors estacionals
+          mensuals reals, tendència +2%/any i escala per nombre d'alumnes (base: 350).
+        </div>
+      </div>
+
+      <!-- Resultats -->
+      <div>
+        <div id="resultats" class="results-grid">
+          <p style="text-align:center;padding:2rem;color:var(--text-clar)">Calculant…</p>
+        </div>
+
+        <!-- Gràfics mensuals -->
+        <div class="charts-grid" style="margin-top:1.5rem">
+          <div class="chart-card">
+            <h4><img src="img/icon-electric.svg" style="width:20px;display:inline;vertical-align:middle;margin-right:6px" alt="">Electricitat mensual (kWh)</h4>
+            <div class="bar-chart" id="chart-elec"></div>
+          </div>
+          <div class="chart-card">
+            <h4><img src="img/icon-water.svg" style="width:20px;display:inline;vertical-align:middle;margin-right:6px" alt="">Aigua mensual (m³)</h4>
+            <div class="bar-chart" id="chart-water"></div>
+          </div>
+          <div class="chart-card">
+            <h4><img src="img/icon-office.svg" style="width:20px;display:inline;vertical-align:middle;margin-right:6px" alt="">Consumibles mensuals</h4>
+            <div class="bar-chart" id="chart-office"></div>
+          </div>
+          <div class="chart-card">
+            <h4><img src="img/icon-clean.svg" style="width:20px;display:inline;vertical-align:middle;margin-right:6px" alt="">Neteja mensual (L)</h4>
+            <div class="bar-chart" id="chart-clean"></div>
+          </div>
+          <div class="chart-card">
+            <h4><img src="img/icon-maintenance.svg" style="width:20px;display:inline;vertical-align:middle;margin-right:6px" alt="">Manteniment mensual (€)</h4>
+            <div class="bar-chart" id="chart-maint"></div>
+          </div>
+          <div class="chart-card">
+            <h4><img src="img/icon-waste.svg" style="width:20px;display:inline;vertical-align:middle;margin-right:6px" alt="">Escombraries mensuals (kg)</h4>
+            <div class="bar-chart" id="chart-waste"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMPARATIVA ABANS / DESPRÉS ════════════════════════ -->
+<section class="section section--white" id="comparativa">
+  <div class="container">
+    <span class="section-eyebrow">⚖️ Impacte de les millores</span>
+    <h2 class="section-title">Abans vs. Després de les Millores</h2>
+    <p class="section-desc">
+      Comparativa dinàmica generada per la calculadora. Modifica la millora al panell
+      per veure com canvien els resultats en temps real.
+    </p>
+    <!-- Omplert dinàmicament per calculadora.js → renderComparativa() -->
+    <div id="comparativa"></div>
+  </div>
+</section>
+
+<!-- ═══ COM REDUIR CADA CONSUM ══════════════════════════════ -->
+<section class="section section--grey" id="reduccions">
+  <div class="container">
+    <span class="section-eyebrow">💡 Guia d'acció</span>
+    <h2 class="section-title">Com Reduir Cada Consum</h2>
+    <p class="section-desc">Accions concretes i verificables per a cada indicador, amb percentatge de reducció estimat.</p>
+
+    <div class="redu-grid">
+
+      <div class="redu-card electric">
+        <span class="redu-pct">−25–35%</span>
+        <img class="redu-icon" src="img/icon-electric.svg" alt="Electricitat">
+        <h3>Electricitat</h3>
+        <ul>
+          <li>Substituir tota la il·luminació per LEDs (−60% llum)</li>
+          <li>Sensors de presència als lavabos i corredors</li>
+          <li>Termòstats programables per horari escolar</li>
+          <li>Apagar equips informàtics fora d'horari</li>
+          <li>Plaques solars fotovoltaiques a la coberta</li>
+          <li>Doble finestres o vidres de baixa emissivitat</li>
+        </ul>
+      </div>
+
+      <div class="redu-card water">
+        <span class="redu-pct">−20–30%</span>
+        <img class="redu-icon" src="img/icon-water.svg" alt="Aigua">
+        <h3>Aigua</h3>
+        <ul>
+          <li>Airejadors i reductors de cabal en aixetes</li>
+          <li>Cisternes de doble descàrrega als lavabos</li>
+          <li>Recollida d'aigües pluvials per regar zones verdes</li>
+          <li>Sensors de fuites en canonades principals</li>
+          <li>Reg gota a gota per a jardins i hort escolar</li>
+          <li>Comptadors intel·ligents per detectar anomalies</li>
+        </ul>
+      </div>
+
+      <div class="redu-card office">
+        <span class="redu-pct">−30–40%</span>
+        <img class="redu-icon" src="img/icon-office.svg" alt="Consumibles">
+        <h3>Consumibles Oficina</h3>
+        <ul>
+          <li>Política "zero paper": digitalitzar comunicats</li>
+          <li>Impressió a doble cara per defecte</li>
+          <li>Paper reciclat certificat FSC o PEFC</li>
+          <li>Bolígrafs i llapis recarregables o reciclats</li>
+          <li>Compartir material entre classes</li>
+          <li>Deures i exàmens en format digital</li>
+        </ul>
+      </div>
+
+      <div class="redu-card clean">
+        <span class="redu-pct">−15–25%</span>
+        <img class="redu-icon" src="img/icon-clean.svg" alt="Neteja">
+        <h3>Productes de Neteja</h3>
+        <ul>
+          <li>Substituir per productes ecològics certificats</li>
+          <li>Dosificadors precisos per evitar sobreutilització</li>
+          <li>Productes concentrats (menys envasos)</li>
+          <li>Microfibres reutilitzables en lloc de paper</li>
+          <li>Compra a granel per reduir plàstic d'un sol ús</li>
+          <li>Formació del personal de neteja</li>
+        </ul>
+      </div>
+
+      <div class="redu-card maint">
+        <span class="redu-pct">−10–20%</span>
+        <img class="redu-icon" src="img/icon-maintenance.svg" alt="Manteniment">
+        <h3>Manteniment</h3>
+        <ul>
+          <li>Manteniment preventiu vs. correctiu (−40% costos)</li>
+          <li>Contractes pluriennals amb proveïdors locals</li>
+          <li>Implicació del personal en detecció d'avaries</li>
+          <li>Registre digital d'incidències i reparacions</li>
+          <li>Substitució d'equips per models d'alta eficiència</li>
+          <li>Garanties exteses i reparabilitat dels equips</li>
+        </ul>
+      </div>
+
+      <div class="redu-card waste">
+        <span class="redu-pct">−20–35%</span>
+        <img class="redu-icon" src="img/icon-waste.svg" alt="Escombraries">
+        <h3>Escombraries</h3>
+        <ul>
+          <li>Recollida selectiva per fraccions (5 contenidors)</li>
+          <li>Compostatge dels residus orgànics del menjador</li>
+          <li>Reducció embalatges en comandes de material</li>
+          <li>Campanyes de sensibilització amb alumnes</li>
+          <li>Auditoria de residus semestral</li>
+          <li>Objectiu "residus zero" per a esdeveniments</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="highlight">
+      <h3>🎯 Objectiu: −30% en 3 anys</h3>
+      <p>Aplicant aquestes mesures de forma progressiva, el centre pot reduir el seu impacte total en un 30% abans del curs 2027–2028, amb un estalvi econòmic significatiu.</p>
+      <div class="highlight-kpis">
+        <div class="hkpi"><span class="val">−14.400</span><span class="lbl">kWh electricitat estalviats/any</span></div>
+        <div class="hkpi"><span class="val">−360</span><span class="lbl">m³ d'aigua estalviats/any</span></div>
+        <div class="hkpi"><span class="val">−4.500</span><span class="lbl">unitats consumibles/any</span></div>
+        <div class="hkpi"><span class="val">−720</span><span class="lbl">L productes neteja/any</span></div>
+        <div class="hkpi"><span class="val">−3.600</span><span class="lbl">kg escombraries/any</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PLA D'ACCIÓ 3 ANYS ══════════════════════════════════ -->
+<section class="section section--dark" id="pla">
+  <div class="container">
+    <span class="section-eyebrow">🗓️ Cronograma</span>
+    <h2 class="section-title">Pla d'Acció a 3 Anys</h2>
+    <p class="section-desc">Objectius mesurables, accions concretes i indicadors per assolir la reducció del 30%.</p>
+
+    <div class="timeline">
+      <div class="tl-year">
+        <span class="tl-badge">Any 1 · 2025</span>
+        <h3>🌱 Conscienciació i Mesura</h3>
+        <ul>
+          <li>Comptadors intel·ligents d'electricitat i aigua</li>
+          <li>Auditoria energètica de l'edifici completa</li>
+          <li>Canvi il·luminació corredors per LED</li>
+          <li>Política doble cara a totes les impressores</li>
+          <li>Campanya "Zero Malbaratament" amb alumnes</li>
+          <li>Dashboard de consum visible al centre</li>
+          <li>Formació equip de neteja (productes ecològics)</li>
+          <li><strong>Indicador:</strong> Reducció 10% vs. línia base</li>
+        </ul>
+        <div class="tl-target"><span class="big">−10%</span><small>reducció acumulada final d'any</small></div>
+      </div>
+
+      <div class="tl-year">
+        <span class="tl-badge">Any 2 · 2026</span>
+        <h3>⚙️ Instal·lació i Hàbits</h3>
+        <ul>
+          <li>Plaques solars fotovoltaiques (coberta)</li>
+          <li>Sensors presència lavabos i sales comunes</li>
+          <li>Airejadors i reductors cabal en aixetes</li>
+          <li>Paper 100% reciclat certificat</li>
+          <li>Sistema recollida aigües pluvials (reg)</li>
+          <li>Registre mensual KPIs per departament</li>
+          <li>Substitució consumibles per materials reciclats</li>
+          <li><strong>Indicador:</strong> Reducció 20% vs. línia base</li>
+        </ul>
+        <div class="tl-target"><span class="big">−20%</span><small>reducció acumulada final d'any</small></div>
+      </div>
+
+      <div class="tl-year">
+        <span class="tl-badge">Any 3 · 2027</span>
+        <h3>🏆 Optimització i Certificació</h3>
+        <ul>
+          <li>Termòstats intel·ligents automatitzats</li>
+          <li>Doble finestres aules (aïllament tèrmic)</li>
+          <li>Certificació eco-escola (Bandera Verda)</li>
+          <li>100% productes neteja ecològics</li>
+          <li>Memòria anual de sostenibilitat pública</li>
+          <li>Replicar model a altres centres del districte</li>
+          <li>Compostatge residus orgànics menjador</li>
+          <li><strong>Indicador:</strong> Reducció 30% vs. línia base ✓</li>
+        </ul>
+        <div class="tl-target"><span class="big">−30%</span><small>reducció acumulada final d'any ✓</small></div>
+      </div>
+    </div>
+
+    <!-- Taula de projecció generada dinàmicament per JS -->
+    <div style="margin-top:3rem;background:rgba(255,255,255,.06);border-radius:var(--r-lg);padding:2rem;border:1px solid rgba(82,183,136,.2)">
+      <h3 style="font-family:'Playfair Display',serif;color:#fff;margin-bottom:1.25rem">
+        📊 Projecció Calculada amb les Millores
+      </h3>
+      <p style="color:rgba(183,228,199,.7);font-size:.85rem;margin-bottom:1rem">
+        Dades generades per la calculadora en temps real per als paràmetres seleccionats.
+      </p>
+      <div id="taula-millores" style="overflow-x:auto">Calculant…</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ECONOMIA CIRCULAR ═══════════════════════════════════ -->
+<section class="section section--white" id="circular">
+  <div class="container">
+    <span class="section-eyebrow">♻️ Principis EC</span>
+    <h2 class="section-title">Economia Circular al Centre</h2>
+    <p class="section-desc">7 principis d'economia circular aplicats a la gestió diària del centre educatiu, alineats amb el pla de reducció del 30%.</p>
+
+    <div class="circ-grid">
+      <div class="circ-card"><span class="circ-num">①</span><h4>Reduir a l'origen</h4><p>Comprar menys i millor: menys embalatge, productes de llarga durada i menor petjada de carboni.</p></div>
+      <div class="circ-card"><span class="circ-num">②</span><h4>Reutilitzar</h4><p>Banc de materials escolar: llibres, material artístic, tòner i carpetes entre cursos.</p></div>
+      <div class="circ-card"><span class="circ-num">③</span><h4>Reparar i mantenir</h4><p>Tallers de reparació amb alumnes (repair cafè). Manteniment preventiu d'equips.</p></div>
+      <div class="circ-card"><span class="circ-num">④</span><h4>Materials biobassats</h4><p>Productes de neteja biodegradables i paper de fibra reciclada o certificada (FSC/PEFC).</p></div>
+      <div class="circ-card"><span class="circ-num">⑤</span><h4>Energia renovable</h4><p>Autoconsum solar fotovoltaic i contractar electricitat de fonts 100% renovables.</p></div>
+      <div class="circ-card"><span class="circ-num">⑥</span><h4>Compra responsable</h4><p>Criteris ambientals i socials en la contractació pública del centre (clàusules verdes).</p></div>
+      <div class="circ-card"><span class="circ-num">⑦</span><h4>Educació i difusió</h4><p>Els alumnes com a agents de canvi: projectes, tallers, campanyes i comunicació externa.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ══════════════════════════════════════════════ -->
+<footer>
+  <p>🌿 <strong>EcoEscola</strong> · Calculadora de Sostenibilitat Escolar · Fase 3 — Generació de Resultats</p>
+  <p style="margin-top:.5rem">
+    Dades calculades amb tendències estacionals reals i factors de consum de referència per a centres educatius de Catalunya.
+    · <a href="pages/resultats.html">Resultats F3 publicats →</a>
+  </p>
+</footer>
+
+<!-- ═══ SCRIPTS ═════════════════════════════════════════════
+     ORDRE OBLIGATORI:
+     1. jsPDF   → carregat al <head> com a CDN (disponible com window.jspdf)
+     2. calculadora.js → defineix INDICADORS, consumAnual, etc.
+     3. pdf-generator.js → usa les funcions de calculadora.js i window.jspdf
+══════════════════════════════════════════════════════════ -->
+<script src="js/calculadora.js"></script>
+<script src="js/pdf-generator.js"></script>
+
+</body>
+</html>
