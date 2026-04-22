@@ -169,7 +169,7 @@ nav {
 .stat-item {
   text-align: center;
   padding: 1.5rem 2rem;
-  border-right: none;
+  border-right: 1px solid rgba(26,61,43,0.08);
 }
 .stat-item:last-child { border-right: none; }
 

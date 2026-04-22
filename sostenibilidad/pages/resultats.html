@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultats Fase 3 · EcoEscola</title>
+  <meta name="description" content="Resultats publicats de la Fase 3 de la Calculadora de Sostenibilitat Escolar EcoEscola.">
+
+  <link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+
+  <!-- CSS extern (un nivell amunt) -->
+  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- jsPDF per al botó de descàrrega (ha d'anar ABANS dels nostres scripts) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    /* Estils específics d'aquesta pàgina */
+    .res-hero { background: linear-gradient(140deg, var(--verd-fosc) 0%, #3a7d57 100%); padding: 8rem 2rem 4rem; text-align: center; }
+    .res-hero h1 { font-family:'Playfair Display',serif; color:#fff; font-size:clamp(2rem,5vw,3.2rem); margin-bottom:.75rem; }
+    .res-hero p  { color:rgba(183,228,199,.8); max-width:600px; margin:.5rem auto 0; }
+
+    .data-section { padding: 3.5rem 2rem; }
+    .data-section:nth-child(even) { background: var(--gris-clar); }
+
+    .back-btn { display:inline-flex; align-items:center; gap:.5rem; color:var(--verd-clar); font-weight:600; font-size:.9rem; margin-bottom:2rem; transition:color .2s; }
+    .back-btn:hover { color:#fff; }
+
+    .summary-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1.1rem; margin-top:1.75rem; }
+    .sum-card { background:#fff; border-radius:var(--r); padding:1.4rem; box-shadow:var(--ombra-sm); text-align:center; }
+    .sum-card .big { font-family:'Playfair Display',serif; font-size:1.7rem; font-weight:900; color:var(--verd-mig); display:block; }
+    .sum-card small { font-size:.72rem; color:var(--text-clar); }
+
+    .data-table { width:100%; border-collapse:collapse; margin-top:1.25rem; background:#fff; border-radius:var(--r); overflow:hidden; box-shadow:var(--ombra-sm); }
+    .data-table th { background:var(--verd-fosc); color:#fff; padding:.85rem 1.1rem; text-align:left; font-size:.82rem; }
+    .data-table td { padding:.75rem 1.1rem; border-bottom:1px solid rgba(26,61,43,.06); font-size:.88rem; }
+    .data-table tr:last-child td { border-bottom:none; }
+    .data-table tr:nth-child(even) td { background:rgba(240,237,228,.4); }
+    .num { font-family:'Playfair Display',serif; font-weight:700; color:var(--verd-mig); }
+    .millora-badge { display:inline-block; background:rgba(82,183,136,.18); color:var(--verd-fosc); border-radius:100px; padding:.15rem .65rem; font-size:.75rem; font-weight:700; }
+
+    .metod-box { background:var(--verd-fosc); border-radius:var(--r-lg); padding:2.25rem; margin-top:2rem; }
+    .metod-box h3 { font-family:'Playfair Display',serif; color:#fff; margin-bottom:1rem; }
+    .metod-box ul { list-style:none; }
+    .metod-box ul li { color:rgba(183,228,199,.8); font-size:.87rem; padding:.35rem 0 .35rem 1.4rem; position:relative; }
+    .metod-box ul li::before { content:'○'; position:absolute; left:0; color:var(--verd-clar); }
+
+    .dyn-note { background:rgba(82,183,136,.1); border:1px solid rgba(82,183,136,.3); border-radius:var(--r); padding:1rem 1.25rem; font-size:.85rem; color:var(--verd-fosc); margin-bottom:1.5rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <img src="../img/logo.svg" alt="EcoEscola">
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#calculadora">Calculadora</a></li>
+    <li><a href="../index.html#comparativa">Avant/Après</a></li>
+    <li><a href="../index.html#reduccions">Reduccions</a></li>
+    <li><a href="../index.html#pla">Pla 3 Anys</a></li>
+    <li><a href="resultats.html" class="actiu">Resultats F3</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="res-hero">
+  <div class="hero-eyebrow" style="display:inline-block;margin-bottom:1rem">📊 Fase 3 · Generació i Publicació de Resultats</div>
+  <h1>Resultats Publicats</h1>
+  <p>Dades generades per la calculadora per a un centre de <strong id="dyn-alumnes" style="color:var(--verd-clar)">350</strong> alumnes.
+     Any de referència: <strong id="dyn-any" style="color:var(--verd-clar)">2025</strong>. Sense millores aplicades (línia base).</p>
+</div>
+
+<!-- RESUM EXECUTIU -->
+<section class="data-section" style="background:#fff">
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Tornar a la calculadora</a>
+
+    <div class="dyn-note">
+      ℹ️ <strong>Dades dinàmiques:</strong> Tots els valors d'aquesta pàgina es generen
+      en temps real a partir de la calculadora. Per veure dades per a un altre centre o any,
+      ajusta els paràmetres a la <a href="../index.html#calculadora" style="color:var(--verd-mig);font-weight:600">calculadora →</a>
+    </div>
+
+    <span class="section-eyebrow">📌 Resum executiu</span>
+    <h2 class="section-title">Consums Anuals Base (2025)</h2>
+    <p class="section-desc">Valors de referència sense millores. Centre de 350 alumnes. Inclou factors estacionals mensuals reals.</p>
+
+    <div class="summary-grid" id="summary-grid">
+      <!-- Generat per JS -->
+    </div>
+  </div>
+</section>
+
+<!-- TAULES PER INDICADOR -->
+<section class="data-section">
+  <div class="container">
+    <span class="section-eyebrow">⚡ Indicadors detallats</span>
+    <h2 class="section-title">Resultats per Indicador</h2>
+    <p class="section-desc">Desglossament per any complet, curs escolar (set.–jun.) i períodes estacionals clau.</p>
+    <div id="taules-indicadors"><!-- Generat per JS --></div>
+  </div>
+</section>
+
+<!-- PROJECCIÓ 3 ANYS -->
+<section class="data-section" style="background:#fff">
+  <div class="container">
+    <span class="section-eyebrow">📈 Projecció temporal</span>
+    <h2 class="section-title">Evolució 2025–2027 amb Pla de Millora</h2>
+    <p class="section-desc">Dades calculades aplicant les reduccions escalonades del pla d'acció a 3 anys.</p>
+    <div id="taula-proj-f3"><!-- Generat per JS --></div>
+  </div>
+</section>
+
+<!-- METODOLOGIA -->
+<section class="data-section">
+  <div class="container">
+    <div class="metod-box">
+      <h3>⚙️ Metodologia de Càlcul</h3>
+      <ul>
+        <li>Base de referència: escola de 350 alumnes, Catalunya, curs 2024–2025</li>
+        <li>6 indicadors: electricitat, aigua, consumibles, neteja, manteniment i escombraries</li>
+        <li>Factors estacionals mensuals reals per a cada indicador (hivern ↑ electricitat, tardor ↑ activitat...)</li>
+        <li>Tendència de creixement sense millores: +2% anual acumulatiu</li>
+        <li>Escala lineal per nombre d'alumnes: factor = alumnes / 350</li>
+        <li>Preus de referència: electricitat 0,18 €/kWh · aigua 2,10 €/m³ · consumibles 0,25 €/u · neteja 3,50 €/L</li>
+        <li>Emissions: electricitat 0,27 kg CO₂/kWh · aigua 0,35 kg CO₂/m³ · neteja 0,50 kg CO₂/L</li>
+        <li>Reducció escalonada: any 1 (−10%) · any 2 (−20%) · any 3 (−30%) sobre la base de cada any</li>
+        <li>Economia circular: 7 principis aplicats al pla de reducció d'impacte</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>🌿 <strong>EcoEscola</strong> · Resultats Fase 3 — Generació i Publicació de Dades ·
+    <a href="../index.html">← Tornar a l'inici</a>
+  </p>
+</footer>
+
+<!-- SCRIPTS
+     ORDRE: jsPDF (CDN al head) → calculadora.js → pdf-generator.js → script inline
+-->
+<script src="../js/calculadora.js"></script>
+<script src="../js/pdf-generator.js"></script>
+<script>
+// ── Genera el contingut dinàmic de la pàgina de resultats ──
+document.addEventListener('DOMContentLoaded', () => {
+  const alumnes = 350;
+  const any     = 2025;
+  const esc     = 1.0; // 350/350
+
+  // Actualitza capçalera
+  document.getElementById('dyn-alumnes').textContent = alumnes;
+  document.getElementById('dyn-any').textContent     = any;
+
+  // ── Resum grid ──────────────────────────────────────────
+  const sumItems = [
+    { lbl:'Electricitat/any', val: Math.round(consumAnual('electricitat',any)*esc).toLocaleString('ca-ES')+' kWh' },
+    { lbl:'Aigua/any',        val: Math.round(consumAnual('aigua',any)*esc).toLocaleString('ca-ES')+' m³' },
+    { lbl:'Consumibles/any',  val: Math.round(consumAnual('consumibles',any)*esc).toLocaleString('ca-ES')+' u.' },
+    { lbl:'Neteja/any',       val: Math.round(consumAnual('neteja',any)*esc).toLocaleString('ca-ES')+' L' },
+    { lbl:'Manteniment/any',  val: Math.round(consumAnual('manteniment',any)*esc).toLocaleString('ca-ES')+' €' },
+    { lbl:'Escombraries/any', val: Math.round(consumAnual('escombraries',any)*esc).toLocaleString('ca-ES')+' kg' },
+    { lbl:'Cost total/any',   val: Math.round(
+        costEuros('electricitat',Math.round(consumAnual('electricitat',any)*esc)) +
+        costEuros('aigua',Math.round(consumAnual('aigua',any)*esc)) +
+        costEuros('consumibles',Math.round(consumAnual('consumibles',any)*esc)) +
+        costEuros('neteja',Math.round(consumAnual('neteja',any)*esc)) +
+        costEuros('manteniment',Math.round(consumAnual('manteniment',any)*esc)) +
+        costEuros('escombraries',Math.round(consumAnual('escombraries',any)*esc))
+      ).toLocaleString('ca-ES')+' €' },
+    { lbl:'CO₂ eq./any',      val: Math.round(
+        co2Equivalent('electricitat',Math.round(consumAnual('electricitat',any)*esc)) +
+        co2Equivalent('aigua',Math.round(consumAnual('aigua',any)*esc)) +
+        co2Equivalent('neteja',Math.round(consumAnual('neteja',any)*esc)) +
+        co2Equivalent('escombraries',Math.round(consumAnual('escombraries',any)*esc))
+      ).toLocaleString('ca-ES')+' kg' },
+  ];
+  document.getElementById('summary-grid').innerHTML = sumItems.map(s =>
+    `<div class="sum-card"><span class="big">${s.val}</span><small>${s.lbl}</small></div>`
+  ).join('');
+
+  // ── Taules per indicador ────────────────────────────────
+  const NOMS_MESOS = ['Gener','Febrer','Març','Abril','Maig','Juny','Juliol','Agost','Setembre','Octubre','Novembre','Desembre'];
+  let html = '';
+
+  Object.entries(INDICADORS).forEach(([key, cfg]) => {
+    const vAny  = Math.round(consumAnual(key, any) * esc);
+    const vCurs = Math.round(consumPeriode(key, any, 8, 5) * esc); // set–juny
+    const vHiv  = Math.round(consumPeriode(key, any, 0, 2) * esc); // gen–mar
+    const vEst  = Math.round(consumPeriode(key, any, 6, 7) * esc); // jul–ago
+    const vAny30= Math.round(vAny * 0.70);
+    const cost  = Math.round(costEuros(key, vAny));
+
+    html += `
+      <div style="margin-bottom:2rem">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--verd-fosc);
+                   display:flex;align-items:center;gap:.6rem;margin-bottom:.75rem">
+          <img src="../img/${cfg.icon.split('/').pop()}" style="width:32px;height:32px" alt="">
+          ${cfg.nom}
+        </h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Càlcul</th>
+              <th>Consum (${cfg.unitat})</th>
+              <th>Cost (€)</th>
+              <th>Amb millora −30%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Any complet (${any})</td>
+              <td class="num">${vAny.toLocaleString('ca-ES')}</td>
+              <td>${cost.toLocaleString('ca-ES')}</td>
+              <td class="num" style="color:var(--verd-clar)">${vAny30.toLocaleString('ca-ES')} ${cfg.unitat} <span class="millora-badge">−30%</span></td>
+            </tr>
+            <tr>
+              <td>Curs escolar (Set.–Jun.)</td>
+              <td class="num">${vCurs.toLocaleString('ca-ES')}</td>
+              <td>${Math.round(costEuros(key, vCurs)).toLocaleString('ca-ES')}</td>
+              <td class="num" style="color:var(--verd-clar)">${Math.round(vCurs*0.70).toLocaleString('ca-ES')} ${cfg.unitat} <span class="millora-badge">−30%</span></td>
+            </tr>
+            <tr>
+              <td>Hivern (Gen.–Mar.) — pic/baix</td>
+              <td class="num">${vHiv.toLocaleString('ca-ES')}</td>
+              <td>${Math.round(costEuros(key, vHiv)).toLocaleString('ca-ES')}</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Estiu (Jul.–Ago.) — vacances</td>
+              <td class="num">${vEst.toLocaleString('ca-ES')}</td>
+              <td>${Math.round(costEuros(key, vEst)).toLocaleString('ca-ES')}</td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>`;
+  });
+  document.getElementById('taules-indicadors').innerHTML = html;
+
+  // ── Taula projecció 3 anys ──────────────────────────────
+  const anys3  = [2025, 2026, 2027];
+  const reds   = [0.10, 0.20, 0.30];
+  let thtml = `
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Indicador</th>
+          <th>Base 2025</th>
+          ${anys3.map((a,i) => `<th>${a} (−${reds[i]*100}%)</th>`).join('')}
+          <th>Estalvi any 3</th>
+        </tr>
+      </thead>
+      <tbody>`;
+
+  Object.entries(INDICADORS).forEach(([key, cfg]) => {
+    const base = Math.round(consumAnual(key, 2025) * esc);
+    const vs   = anys3.map((a, i) => Math.round(consumAnual(key, a) * esc * (1 - reds[i])));
+    thtml += `
+      <tr>
+        <td><strong>${cfg.nom}</strong></td>
+        <td class="num">${base.toLocaleString('ca-ES')} ${cfg.unitat}</td>
+        ${vs.map(v => `<td>${v.toLocaleString('ca-ES')} ${cfg.unitat}</td>`).join('')}
+        <td><span class="millora-badge">−${(base-vs[2]).toLocaleString('ca-ES')} ${cfg.unitat}</span></td>
+      </tr>`;
+  });
+
+  // Fila cost total
+  const baseCost = Object.entries(INDICADORS).reduce((s,[k]) => s + Math.round(costEuros(k, Math.round(consumAnual(k,2025)*esc))),0);
+  const cost27   = Object.entries(INDICADORS).reduce((s,[k]) => s + Math.round(costEuros(k, Math.round(consumAnual(k,2027)*esc*0.70))),0);
+  thtml += `
+      <tr style="background:rgba(82,183,136,.08)">
+        <td colspan="2"><strong>💰 Cost total (€/any)</strong></td>
+        <td colspan="3" style="color:var(--text-mig)"><strong>${baseCost.toLocaleString('ca-ES')} € → ${cost27.toLocaleString('ca-ES')} €</strong></td>
+        <td><span class="millora-badge">−${(baseCost-cost27).toLocaleString('ca-ES')} €/any</span></td>
+      </tr>
+    </tbody></table>`;
+
+  document.getElementById('taula-proj-f3').innerHTML = thtml;
+});
+</script>
+
+</body>
+</html>
