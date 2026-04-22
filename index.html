@@ -7,10 +7,10 @@
   <meta name="description" content="Calculadora de consum d'electricitat, aigua, consumibles, neteja, manteniment i escombraries per a centres educatius. Projeccions estacionals i pla de reducció del 30%.">
 
   <!-- Favicon -->
-  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="sostenibilidad/img/logo.svg" type="image/svg+xml">
 
   <!-- 1. ESTILS (fitxer extern) -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="sostenibilidad/css/style.css">
 
   <!-- 2. jsPDF — ha d'estar carregat ABANS de pdf-generator.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -20,7 +20,7 @@
 <!-- ═══ NAVEGACIÓ ══════════════════════════════════════════ -->
 <nav class="nav">
   <a href="index.html" class="nav-logo">
-    <img src="img/logo.svg" alt="EcoEscola">
+    <img src="sostenibilidad/img/logo.svg" alt="EcoEscola">
   </a>
   <ul class="nav-links">
     <li><a href="#calculadora" class="actiu">Calculadora</a></li>
@@ -28,7 +28,7 @@
     <li><a href="#reduccions">Reduccions</a></li>
     <li><a href="#pla">Pla 3 Anys</a></li>
     <li><a href="#circular">Economia Circular</a></li>
-    <li><a href="pages/resultats.html">Resultats F3</a></li>
+    <li><a href="sostenibilidad/pages/resultats.html">Resultats F3</a></li>
   </ul>
 </nav>
 
@@ -43,7 +43,7 @@
   <div class="hero-btns">
     <a href="#calculadora" class="btn btn-primary">→ Obrir calculadora</a>
     <a href="#pla" class="btn btn-outline">Veure pla 3 anys</a>
-    <a href="pages/resultats.html" class="btn btn-outline">Resultats F3</a>
+    <a href="sostenibilidad/pages/resultats.html" class="btn btn-outline">Resultats F3</a>
   </div>
 </section>
 
@@ -132,11 +132,11 @@
         <!-- Gràfics mensuals -->
         <div class="charts-grid" style="margin-top:1.5rem">
           <div class="chart-card">
-            <h4><img src="img/icon-electric.svg" style="width:20px;display:inline;vertical-align:middle;margin-right:6px" alt="">Electricitat mensual (kWh)</h4>
+            <h4><img src="sostenibilidad/img/icon-electric.svg" style="width:20px;display:inline;vertical-align:middle;margin-right:6px" alt="">Electricitat mensual (kWh)</h4>
             <div class="bar-chart" id="chart-elec"></div>
           </div>
           <div class="chart-card">
-            <h4><img src="img/icon-water.svg" style="width:20px;display:inline;vertical-align:middle;margin-right:6px" alt="">Aigua mensual (m³)</h4>
+            <h4><img src="sostenibilidad/img/icon-water.svg" style="width:20px;display:inline;vertical-align:middle;margin-right:6px" alt="">Aigua mensual (m³)</h4>
             <div class="bar-chart" id="chart-water"></div>
           </div>
           <div class="chart-card">
@@ -186,7 +186,7 @@
 
       <div class="redu-card electric">
         <span class="redu-pct">−25–35%</span>
-        <img class="redu-icon" src="img/icon-electric.svg" alt="Electricitat">
+        <img class="redu-icon" src="sostenibilidad/img/icon-electric.svg" alt="Electricitat">
         <h3>Electricitat</h3>
         <ul>
           <li>Substituir tota la il·luminació per LEDs (−60% llum)</li>
@@ -200,7 +200,7 @@
 
       <div class="redu-card water">
         <span class="redu-pct">−20–30%</span>
-        <img class="redu-icon" src="img/icon-water.svg" alt="Aigua">
+        <img class="redu-icon" src="sostenibilidad/img/icon-water.svg" alt="Aigua">
         <h3>Aigua</h3>
         <ul>
           <li>Airejadors i reductors de cabal en aixetes</li>
@@ -378,7 +378,7 @@
   <p>🌿 <strong>EcoEscola</strong> · Calculadora de Sostenibilitat Escolar · Fase 3 — Generació de Resultats</p>
   <p style="margin-top:.5rem">
     Dades calculades amb tendències estacionals reals i factors de consum de referència per a centres educatius de Catalunya.
-    · <a href="pages/resultats.html">Resultats F3 publicats →</a>
+    · <a href="sostenibilidad/pages/resultats.html">Resultats F3 publicats →</a>
   </p>
 </footer>
 
@@ -388,8 +388,8 @@
      2. calculadora.js → defineix INDICADORS, consumAnual, etc.
      3. pdf-generator.js → usa les funcions de calculadora.js i window.jspdf
 ══════════════════════════════════════════════════════════ -->
-<script src="js/calculadora.js"></script>
-<script src="js/pdf-generator.js"></script>
+<script src="sostenibilidad/js/calculadora.js"></script>
+<script src="sostenibilidad/js/pdf-generator.js"></script>
 
 </body>
 </html>
