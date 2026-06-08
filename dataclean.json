@@ -1,22 +1,336 @@
 {
-  "energy_consumption_kwh": [
-    { "month": "January", "value": 1200 },
-    { "month": "February", "value": 1100 },
-    { "month": "March", "value": 1000 }
+  "metadata": {
+    "projecte": "TA08 - Calculadora d'estalvi energètic",
+    "fase": "F1 - Diagnosi ASG del centre",
+    "entregable": "dataclean.json",
+    "font": "ITB Leaks - documents interns (factures, albarans, informes)",
+    "centre": "Institut Tecnològic de Barcelona (ITB)",
+    "data_generacio": "2025-03-20",
+    "curs_academic": "2024-2025"
+  },
+  "indicadors": [
+    {
+      "id": "IND-01",
+      "nom": "Consum d'aigua",
+      "descripcio": "Litres consumits per hora al centre, mesurats via comptador intel·ligent",
+      "unitat": "Litres/hora",
+      "font": "Sistema de monitoratge d'aigua (gràfics horaris)",
+      "dates_disponibles": [
+        "2024-02-25",
+        "2024-02-28",
+        "2024-02-29"
+      ]
+    },
+    {
+      "id": "IND-02",
+      "nom": "Consum elèctric fotovoltaic",
+      "descripcio": "Producció solar, autoconsum, importació i exportació elèctrica de la instal·lació FV del centre",
+      "unitat": "kWh/dia",
+      "font": "Plant Report ITB 01-2025 (xlsx)",
+      "dates_disponibles": [
+        "2025-01-01 a 2025-01-22"
+      ]
+    },
+    {
+      "id": "IND-03",
+      "nom": "Consum de consumibles d'oficina i neteja",
+      "descripcio": "Despesa en paper, marcadors, borradors, bosses, paper WC, paper secamans i sabó de mans",
+      "unitat": "€ i unitats físiques per comanda",
+      "font": "Factures Lyreco i ITB Leaks (neteges)"
+    },
+    {
+      "id": "IND-04",
+      "nom": "Ús de mòbils a l'aula",
+      "descripcio": "Percentatge d'alumnat que porta el mòbil sobre la taula durant les classes, per grup i sessió",
+      "unitat": "% mòbils/alumnat present",
+      "font": "Informe INDICADORS Mobils a l'aula 2024-2025 (pdf)"
+    }
   ],
-  "water_consumption_m3": [
-    { "month": "January", "value": 300 },
-    { "month": "February", "value": 280 },
-    { "month": "March", "value": 320 }
-  ],
-  "electronic_waste_units": [
-    { "month": "January", "value": 15 },
-    { "month": "February", "value": 10 },
-    { "month": "March", "value": 20 }
-  ],
-  "office_consumables_units": [
-    { "month": "January", "value": 500 },
-    { "month": "February", "value": 450 },
-    { "month": "March", "value": 600 }
-  ]
+  "dades": {
+    "IND-01_consum_aigua": {
+      "descripcio": "Evolució horària del consum d'aigua al centre (litres per hora)",
+      "unitat": "Litres",
+      "registres": [
+        {
+          "data": "2024-02-25",
+          "total_hores_registrades": 24,
+          "nota": "Dia complet. Valor confirmat per tooltip: 3:00am = 193 L",
+          "dades_horàries": [
+            { "hora": "00:00", "litres": 175 }, { "hora": "01:00", "litres": 190 },
+            { "hora": "02:00", "litres": 190 }, { "hora": "03:00", "litres": 193 },
+            { "hora": "04:00", "litres": 150 }, { "hora": "05:00", "litres": 155 },
+            { "hora": "06:00", "litres": 200 }, { "hora": "07:00", "litres": 205 },
+            { "hora": "08:00", "litres": 205 }, { "hora": "09:00", "litres": 220 },
+            { "hora": "10:00", "litres": 220 }, { "hora": "11:00", "litres": 235 },
+            { "hora": "12:00", "litres": 205 }, { "hora": "13:00", "litres": 235 },
+            { "hora": "14:00", "litres": 255 }, { "hora": "15:00", "litres": 305 },
+            { "hora": "16:00", "litres": 200 }, { "hora": "17:00", "litres": 190 },
+            { "hora": "18:00", "litres": 178 }, { "hora": "19:00", "litres": 175 },
+            { "hora": "20:00", "litres": 175 }, { "hora": "21:00", "litres": 180 },
+            { "hora": "22:00", "litres": 183 }, { "hora": "23:00", "litres": 248 }
+          ],
+          "resum": { "pic_maxim_litres": 305, "hora_pic": "15:00", "total_estimat_litres": 4897 }
+        },
+        {
+          "data": "2024-02-28",
+          "total_hores_registrades": 24,
+          "nota": "Dia complet. Dia atípicament alt. Valor confirmat per tooltip: 1:00am = 154 L",
+          "dades_horàries": [
+            { "hora": "00:00", "litres": 205 }, { "hora": "01:00", "litres": 154 },
+            { "hora": "02:00", "litres": 120 }, { "hora": "03:00", "litres": 130 },
+            { "hora": "04:00", "litres": 155 }, { "hora": "05:00", "litres": 158 },
+            { "hora": "06:00", "litres": 158 }, { "hora": "07:00", "litres": 158 },
+            { "hora": "08:00", "litres": 275 }, { "hora": "09:00", "litres": 278 },
+            { "hora": "10:00", "litres": 455 }, { "hora": "11:00", "litres": 440 },
+            { "hora": "12:00", "litres": 390 }, { "hora": "13:00", "litres": 470 },
+            { "hora": "14:00", "litres": 500 }, { "hora": "15:00", "litres": 445 },
+            { "hora": "16:00", "litres": 400 }, { "hora": "17:00", "litres": 400 },
+            { "hora": "18:00", "litres": 530 }, { "hora": "19:00", "litres": 450 },
+            { "hora": "20:00", "litres": 410 }, { "hora": "21:00", "litres": 325 },
+            { "hora": "22:00", "litres": 175 }, { "hora": "23:00", "litres": 250 }
+          ],
+          "resum": { "pic_maxim_litres": 530, "hora_pic": "18:00", "total_estimat_litres": 7985 }
+        },
+        {
+          "data": "2024-02-29",
+          "total_hores_registrades": 13,
+          "nota": "Dia parcial, dades fins a les 12:00. Valor confirmat per tooltip: 00:00 = 175 L",
+          "dades_horàries": [
+            { "hora": "00:00", "litres": 175 }, { "hora": "01:00", "litres": 155 },
+            { "hora": "02:00", "litres": 160 }, { "hora": "03:00", "litres": 163 },
+            { "hora": "04:00", "litres": 168 }, { "hora": "05:00", "litres": 170 },
+            { "hora": "06:00", "litres": 175 }, { "hora": "07:00", "litres": 180 },
+            { "hora": "08:00", "litres": 305 }, { "hora": "09:00", "litres": 295 },
+            { "hora": "10:00", "litres": 440 }, { "hora": "11:00", "litres": 500 },
+            { "hora": "12:00", "litres": 450 }
+          ],
+          "resum": { "pic_maxim_litres": 500, "hora_pic": "11:00", "total_estimat_litres_mig_dia": 3336 }
+        }
+      ]
+    },
+    "IND-02_planta_fotovoltaica": {
+      "descripcio": "Dades diàries de la instal·lació solar fotovoltaica del centre",
+      "capacitat_string_kWp": 30.94,
+      "periode": "2025-01-01 / 2025-01-22",
+      "registres_diaris": [
+        { "data": "2025-01-01", "produccio_PV_kWh": 42.56, "consum_kWh": 157.47, "exportacio_kWh": 2.62, "importacio_kWh": 117.53, "autoconsum_kWh": 39.94, "tasa_autoconsum_pct": 93.844, "potencia_pic_kW": 9.22, "CO2_evitat_t": 0.020, "ingressos_EUR": 0.31 },
+        { "data": "2025-01-02", "produccio_PV_kWh": 48.86, "consum_kWh": 159.55, "exportacio_kWh": 3.43, "importacio_kWh": 114.12, "autoconsum_kWh": 45.43, "tasa_autoconsum_pct": 92.980, "potencia_pic_kW": 11.235, "CO2_evitat_t": 0.023, "ingressos_EUR": 0.42 },
+        { "data": "2025-01-03", "produccio_PV_kWh": 36.48, "consum_kWh": 189.50, "exportacio_kWh": 0.22, "importacio_kWh": 153.24, "autoconsum_kWh": 36.26, "tasa_autoconsum_pct": 99.397, "potencia_pic_kW": 10.22, "CO2_evitat_t": 0.017, "ingressos_EUR": 0.02 },
+        { "data": "2025-01-04", "produccio_PV_kWh": 44.18, "consum_kWh": 201.76, "exportacio_kWh": 0.43, "importacio_kWh": 158.01, "autoconsum_kWh": 43.75, "tasa_autoconsum_pct": 99.027, "potencia_pic_kW": 11.222, "CO2_evitat_t": 0.021, "ingressos_EUR": 0.05 },
+        { "data": "2025-01-05", "produccio_PV_kWh": 41.99, "consum_kWh": 199.49, "exportacio_kWh": 0.14, "importacio_kWh": 157.64, "autoconsum_kWh": 41.85, "tasa_autoconsum_pct": 99.667, "potencia_pic_kW": 10.111, "CO2_evitat_t": 0.020, "ingressos_EUR": 0.02 },
+        { "data": "2025-01-06", "produccio_PV_kWh": 40.55, "consum_kWh": 191.55, "exportacio_kWh": 2.63, "importacio_kWh": 153.63, "autoconsum_kWh": 37.92, "tasa_autoconsum_pct": 93.514, "potencia_pic_kW": 11.526, "CO2_evitat_t": 0.019, "ingressos_EUR": 0.31 },
+        { "data": "2025-01-07", "produccio_PV_kWh": 53.26, "consum_kWh": 200.19, "exportacio_kWh": 1.90, "importacio_kWh": 148.83, "autoconsum_kWh": 51.36, "tasa_autoconsum_pct": 96.433, "potencia_pic_kW": 10.099, "CO2_evitat_t": 0.025, "ingressos_EUR": 0.23 },
+        { "data": "2025-01-08", "produccio_PV_kWh": 47.81, "consum_kWh": 467.60, "exportacio_kWh": 0.00, "importacio_kWh": 419.79, "autoconsum_kWh": 47.81, "tasa_autoconsum_pct": 100.000, "potencia_pic_kW": 11.608, "CO2_evitat_t": 0.023, "ingressos_EUR": 0.00 },
+        { "data": "2025-01-09", "produccio_PV_kWh": 52.03, "consum_kWh": 461.78, "exportacio_kWh": 0.00, "importacio_kWh": 409.75, "autoconsum_kWh": 52.03, "tasa_autoconsum_pct": 100.000, "potencia_pic_kW": 9.792, "CO2_evitat_t": 0.025, "ingressos_EUR": 0.00 },
+        { "data": "2025-01-10", "produccio_PV_kWh": 49.33, "consum_kWh": 425.97, "exportacio_kWh": 0.00, "importacio_kWh": 376.64, "autoconsum_kWh": 49.33, "tasa_autoconsum_pct": 100.000, "potencia_pic_kW": 9.565, "CO2_evitat_t": 0.023, "ingressos_EUR": 0.00 },
+        { "data": "2025-01-11", "produccio_PV_kWh": 40.03, "consum_kWh": 201.40, "exportacio_kWh": 1.49, "importacio_kWh": 162.86, "autoconsum_kWh": 38.54, "tasa_autoconsum_pct": 96.278, "potencia_pic_kW": 11.900, "CO2_evitat_t": 0.019, "ingressos_EUR": 0.18 },
+        { "data": "2025-01-12", "produccio_PV_kWh": 57.00, "consum_kWh": 214.71, "exportacio_kWh": 1.87, "importacio_kWh": 159.58, "autoconsum_kWh": 55.13, "tasa_autoconsum_pct": 96.719, "potencia_pic_kW": 10.562, "CO2_evitat_t": 0.027, "ingressos_EUR": 0.22 },
+        { "data": "2025-01-13", "produccio_PV_kWh": 55.89, "consum_kWh": 491.00, "exportacio_kWh": 0.00, "importacio_kWh": 435.11, "autoconsum_kWh": 55.89, "tasa_autoconsum_pct": 100.000, "potencia_pic_kW": 10.462, "CO2_evitat_t": 0.027, "ingressos_EUR": 0.00 },
+        { "data": "2025-01-14", "produccio_PV_kWh": 57.49, "consum_kWh": 484.29, "exportacio_kWh": 0.00, "importacio_kWh": 426.80, "autoconsum_kWh": 57.49, "tasa_autoconsum_pct": 100.000, "potencia_pic_kW": 10.638, "CO2_evitat_t": 0.027, "ingressos_EUR": 0.00 },
+        { "data": "2025-01-15", "produccio_PV_kWh": 55.58, "consum_kWh": 479.75, "exportacio_kWh": 0.00, "importacio_kWh": 424.17, "autoconsum_kWh": 55.58, "tasa_autoconsum_pct": 100.000, "potencia_pic_kW": 10.987, "CO2_evitat_t": 0.026, "ingressos_EUR": 0.00 },
+        { "data": "2025-01-16", "produccio_PV_kWh": 40.94, "consum_kWh": 490.80, "exportacio_kWh": 0.00, "importacio_kWh": 449.86, "autoconsum_kWh": 40.94, "tasa_autoconsum_pct": 100.000, "potencia_pic_kW": 11.539, "CO2_evitat_t": 0.019, "ingressos_EUR": 0.00 },
+        { "data": "2025-01-17", "produccio_PV_kWh": 52.90, "consum_kWh": 430.68, "exportacio_kWh": 0.00, "importacio_kWh": 377.78, "autoconsum_kWh": 52.90, "tasa_autoconsum_pct": 100.000, "potencia_pic_kW": 13.937, "CO2_evitat_t": 0.025, "ingressos_EUR": 0.00 },
+        { "data": "2025-01-18", "produccio_PV_kWh": 56.17, "consum_kWh": 198.59, "exportacio_kWh": 3.17, "importacio_kWh": 145.59, "autoconsum_kWh": 53.00, "tasa_autoconsum_pct": 94.356, "potencia_pic_kW": 11.598, "CO2_evitat_t": 0.027, "ingressos_EUR": 0.38 },
+        { "data": "2025-01-19", "produccio_PV_kWh": 35.53, "consum_kWh": 202.16, "exportacio_kWh": 0.20, "importacio_kWh": 166.83, "autoconsum_kWh": 35.33, "tasa_autoconsum_pct": 99.437, "potencia_pic_kW": 9.928, "CO2_evitat_t": 0.017, "ingressos_EUR": 0.02 },
+        { "data": "2025-01-20", "produccio_PV_kWh": 32.00, "consum_kWh": 488.39, "exportacio_kWh": 0.00, "importacio_kWh": 456.39, "autoconsum_kWh": 32.00, "tasa_autoconsum_pct": 100.000, "potencia_pic_kW": 12.032, "CO2_evitat_t": 0.015, "ingressos_EUR": 0.00 },
+        { "data": "2025-01-21", "produccio_PV_kWh": 30.24, "consum_kWh": 500.34, "exportacio_kWh": 0.00, "importacio_kWh": 470.10, "autoconsum_kWh": 30.24, "tasa_autoconsum_pct": 100.000, "potencia_pic_kW": 9.842, "CO2_evitat_t": 0.014, "ingressos_EUR": 0.00 },
+        { "data": "2025-01-22", "produccio_PV_kWh": 5.87, "consum_kWh": 165.55, "exportacio_kWh": 0.00, "importacio_kWh": 159.68, "autoconsum_kWh": 5.87, "tasa_autoconsum_pct": 100.000, "potencia_pic_kW": 6.755, "CO2_evitat_t": 0.003, "ingressos_EUR": 0.00 }
+      ],
+      "resum_periode": {
+        "produccio_neta_kWh": 934.13,
+        "consum_total_kWh": 7302.26,
+        "exportacio_total_kWh": 21.91,
+        "importacio_total_kWh": 6291.03,
+        "dies_autoconsum_100pct": 11,
+        "CO2_evitat_total_t": 0.453,
+        "ingressos_totals_EUR": 2.39
+      }
+    },
+    "IND-03_consumibles": {
+      "descripcio": "Factures de consumibles d'oficina (paper, marcadors, borradors) i productes de neteja (paper WC, paper secamans, sabó, bosses)",
+      "proveidor_principal": "Lyreco / ITB Leaks",
+      "forma_pagament": "SEPA Direct Debit",
+      "factures_oficina": [
+        {
+          "referencia": "F035",
+          "data_factura": "2024-04-30",
+          "data_venciment": "2024-05-31",
+          "base_imponible_EUR": 229.03,
+          "IVA_pct": 21,
+          "total_EUR": 277.13,
+          "linies": [
+            { "descripcio": "PK10 Recambios borrador FAIBO", "quantitat": 1, "preu_unitari_EUR": 5.60, "import_EUR": 5.60 },
+            { "descripcio": "Borrador no magnètic FAIBO PLAST GRIS", "quantitat": 6, "preu_unitari_EUR": 6.83, "import_EUR": 40.98 },
+            { "descripcio": "500H Paper NAVIGATOR UNIVERSAL A4 80g", "quantitat": 15, "preu_unitari_EUR": 5.34, "import_EUR": 80.10 },
+            { "descripcio": "Marcador pissarra PILOT BEGREEN 2,3mm VERD", "quantitat": 25, "preu_unitari_EUR": 0.89, "import_EUR": 22.25 },
+            { "descripcio": "Marcador pissarra PILOT BEGREEN 2,3mm VERMELL", "quantitat": 30, "preu_unitari_EUR": 0.89, "import_EUR": 26.70 },
+            { "descripcio": "Marcador pissarra PILOT BEGREEN 2,3mm NEGRE", "quantitat": 30, "preu_unitari_EUR": 0.89, "import_EUR": 26.70 },
+            { "descripcio": "Marcador pissarra PILOT BEGREEN 2,3mm BLAU", "quantitat": 30, "preu_unitari_EUR": 0.89, "import_EUR": 26.70 }
+          ]
+        },
+        {
+          "referencia": "F036",
+          "data_factura": "2024-05-31",
+          "data_venciment": "2024-06-30",
+          "base_imponible_EUR": 215.90,
+          "IVA_pct": 21,
+          "total_EUR": 261.24,
+          "linies": [
+            { "descripcio": "Recanvi marcador pissarra blanca VERD", "quantitat": 30, "preu_unitari_EUR": 0.91, "import_EUR": 27.30 },
+            { "descripcio": "Recanvi marcador pissarra blanca BLAU", "quantitat": 40, "preu_unitari_EUR": 0.71, "import_EUR": 28.40 },
+            { "descripcio": "500H Paper NAVIGATOR UNIVERSAL A4 80g", "quantitat": 30, "preu_unitari_EUR": 5.34, "import_EUR": 160.20 }
+          ]
+        },
+        {
+          "referencia": "F327",
+          "data_factura": "2024-06-30",
+          "data_venciment": "2024-07-31",
+          "base_imponible_EUR": 28.40,
+          "IVA_pct": 21,
+          "total_EUR": 34.36,
+          "linies": [
+            { "descripcio": "Recanvi marcador pissarra blanca NEGRE", "quantitat": 40, "preu_unitari_EUR": 0.71, "import_EUR": 28.40 }
+          ]
+        },
+        {
+          "referencia": "F328",
+          "data_factura": "2024-10-31",
+          "data_venciment": "2024-11-30",
+          "base_imponible_EUR": 164.10,
+          "IVA_pct": 21,
+          "total_EUR": 198.56,
+          "linies": [
+            { "descripcio": "500H Paper NAVIGATOR UNIVERSAL A4 80g", "quantitat": 20, "preu_unitari_EUR": 5.47, "import_EUR": 109.40 },
+            { "descripcio": "500H Paper NAVIGATOR UNIVERSAL A4 80g", "quantitat": 10, "preu_unitari_EUR": 5.47, "import_EUR": 54.70 }
+          ]
+        }
+      ],
+      "factures_neteja": [
+        {
+          "referencia": "F055",
+          "data_factura": "2024-06-20",
+          "base_imponible_EUR": 620.05,
+          "IVA_pct": 21,
+          "total_EUR": 750.26,
+          "linies": [
+            { "descripcio": "Fardos paper secamans (18,25€/fardo)", "quantitat": 10, "preu_unitari_EUR": 18.25, "import_EUR": 182.50 },
+            { "descripcio": "Sacs industrials (1,51€/sac)", "quantitat": 20, "preu_unitari_EUR": 1.51, "import_EUR": 30.20 },
+            { "descripcio": "Bosses escombraries petites (1,13€/bossa)", "quantitat": 30, "preu_unitari_EUR": 1.13, "import_EUR": 33.90 },
+            { "descripcio": "Fardos paper WC industrial (25,67€/fardo)", "quantitat": 10, "preu_unitari_EUR": 25.67, "import_EUR": 256.70 },
+            { "descripcio": "Fardos paper secamans metxa (18,25€/fardo)", "quantitat": 5, "preu_unitari_EUR": 18.25, "import_EUR": 91.25 },
+            { "descripcio": "Garrafes sabó mans 5L (8,50€/garrafa)", "quantitat": 3, "preu_unitari_EUR": 8.50, "import_EUR": 25.50 }
+          ]
+        },
+        {
+          "referencia": "F056",
+          "data_factura": "2024-05-27",
+          "base_imponible_EUR": 375.80,
+          "IVA_pct": 21,
+          "total_EUR": 454.72,
+          "linies": [
+            { "descripcio": "Neteja jardí, patis i entrada (20/04/2024)", "quantitat": 1, "preu_unitari_EUR": 668.80, "import_EUR": 668.80 },
+            { "descripcio": "Transport i deixalleria", "quantitat": 1, "preu_unitari_EUR": 208.60, "import_EUR": 208.60 },
+            { "descripcio": "Bossa hores especialistes licitació (30h)", "quantitat": 1, "preu_unitari_EUR": -501.60, "import_EUR": -501.60 }
+          ]
+        }
+      ],
+      "resum_consumibles": {
+        "total_paper_A4_fulls": 37500,
+        "total_marcadors_recanvis_unitats": 235,
+        "total_paper_WC_fardos": 10,
+        "total_paper_secamans_fardos": 15,
+        "total_sabo_mans_litres": 15,
+        "despesa_total_oficina_EUR": 771.29,
+        "despesa_total_neteja_productes_EUR": 1205.0,
+        "despesa_total_combinada_EUR": 1976.29
+      }
+    },
+    "IND-04_mobils_aula": {
+      "descripcio": "Registre del percentatge de mòbils sobre la taula per sessió, grup i data",
+      "curs": "2024-2025",
+      "data_informe": "2025-01-20",
+      "llindars_referencia": { "optim_pct": 10, "acceptable_pct": 20 },
+      "grups": [
+        {
+          "ASIXc1A": {
+            "total_sessions": 11,
+            "mitjana_pct": 35.03,
+            "maxim_pct": 57.89,
+            "minim_pct": 15.00,
+            "sessions_dins_llindar_10pct": 0,
+            "sessions_dins_llindar_20pct": 2,
+            "sessions_fora_llindar_20pct": 9,
+            "sessions": [
+              { "data": "2024-11-15", "mobils": 3.0, "alumnat": 20, "pct": 15.00 },
+              { "data": "2024-11-21", "mobils": 7.0, "alumnat": 19, "pct": 36.84 },
+              { "data": "2024-11-22", "mobils": 5.0, "alumnat": 21, "pct": 23.81 },
+              { "data": "2024-11-28", "mobils": 6.0, "alumnat": 19, "pct": 31.58 },
+              { "data": "2024-11-29", "mobils": 5.0, "alumnat": 22, "pct": 22.73 },
+              { "data": "2024-12-12", "mobils": 3.5, "alumnat": 19, "pct": 18.42 },
+              { "data": "2024-12-13", "mobils": 11.0, "alumnat": 19, "pct": 57.89 },
+              { "data": "2024-12-19", "mobils": 9.5, "alumnat": 18, "pct": 52.78 },
+              { "data": "2025-01-09", "mobils": 9.0, "alumnat": 20, "pct": 45.00 },
+              { "data": "2025-01-16", "mobils": 8.0, "alumnat": 18, "pct": 44.44 },
+              { "data": "2025-01-17", "mobils": 7.0, "alumnat": 19, "pct": 36.84 }
+            ]
+          }
+        },
+        {
+          "ASIXc1B": {
+            "total_sessions": 11,
+            "mitjana_pct": 19.55,
+            "maxim_pct": 34.21,
+            "minim_pct": 4.76,
+            "sessions_dins_llindar_10pct": 1,
+            "sessions_dins_llindar_20pct": 6,
+            "sessions_fora_llindar_20pct": 4,
+            "sessions": [
+              { "data": "2024-11-16", "mobils": 6.0, "alumnat": 21, "pct": 28.57 },
+              { "data": "2024-11-22", "mobils": 3.0, "alumnat": 20, "pct": 15.00 },
+              { "data": "2024-11-26", "mobils": 2.5, "alumnat": 20, "pct": 12.50 },
+              { "data": "2024-11-29", "mobils": 4.0, "alumnat": 21, "pct": 19.05 },
+              { "data": "2024-12-03", "mobils": 1.0, "alumnat": 21, "pct": 4.76 },
+              { "data": "2024-12-10", "mobils": 3.0, "alumnat": 17, "pct": 17.65 },
+              { "data": "2024-12-13", "mobils": 6.5, "alumnat": 19, "pct": 34.21 },
+              { "data": "2024-12-17", "mobils": 4.0, "alumnat": 17, "pct": 23.53 },
+              { "data": "2025-01-14", "mobils": 3.0, "alumnat": 18, "pct": 16.67 },
+              { "data": "2025-01-17", "mobils": 4.0, "alumnat": 17, "pct": 23.53 }
+            ]
+          }
+        },
+        {
+          "ASIXc1C": {
+            "total_sessions": 13,
+            "mitjana_pct": 42.05,
+            "maxim_pct": 80.56,
+            "minim_pct": 11.76,
+            "sessions_dins_llindar_10pct": 0,
+            "sessions_dins_llindar_20pct": 2,
+            "sessions_fora_llindar_20pct": 11,
+            "sessions": [
+              { "data": "2024-11-18", "mobils": 11.0, "alumnat": 18, "pct": 61.11 },
+              { "data": "2024-11-19", "mobils": 6.0, "alumnat": 19, "pct": 31.58 },
+              { "data": "2024-11-25", "mobils": 3.5, "alumnat": 18, "pct": 19.44 },
+              { "data": "2024-11-26", "mobils": 14.5, "alumnat": 18, "pct": 80.56 },
+              { "data": "2024-12-02", "mobils": 8.0, "alumnat": 18, "pct": 44.44 },
+              { "data": "2024-12-03", "mobils": 6.0, "alumnat": 16, "pct": 37.50 },
+              { "data": "2024-12-09", "mobils": 3.5, "alumnat": 15, "pct": 23.33 },
+              { "data": "2024-12-10", "mobils": 6.0, "alumnat": 17, "pct": 35.29 },
+              { "data": "2024-12-16", "mobils": 2.0, "alumnat": 17, "pct": 11.76 },
+              { "data": "2024-12-17", "mobils": 5.0, "alumnat": 15, "pct": 33.33 },
+              { "data": "2025-01-13", "mobils": 5.0, "alumnat": 13, "pct": 38.46 },
+              { "data": "2025-01-14", "mobils": 11.0, "alumnat": 16, "pct": 68.75 }
+            ]
+          }
+        }
+      ],
+      "resum_global": {
+        "ranking_compliment": [
+          { "grup": "ASIXc1B", "mitjana_pct": 19.55, "compleix_llindar_20pct": true },
+          { "grup": "ASIXc1A", "mitjana_pct": 35.03, "compleix_llindar_20pct": false },
+          { "grup": "ASIXc1C", "mitjana_pct": 42.05, "compleix_llindar_20pct": false }
+        ]
+      }
+    }
+  }
 }
